@@ -3,6 +3,7 @@
     include_once('../../controller/tecnologia/Sistema.php');
     
     include_once('../../model/rastreamento/ModelPedido.php');
+    include_once('../../model/rastreamento/ModelRastreioPedidoOcorrencia.php');
 
     date_default_timezone_set('America/Sao_Paulo');
 
@@ -10,6 +11,7 @@
     $acao = $_POST['ACAO'];
     
     $Pedido = new Pedido();
+    $Ocorrencia = new Ocorrencia();
     
     switch ($acao) {
         case "getHandlePorRastreamento":
@@ -40,6 +42,12 @@
 
             $Pedido->setDocumentoHandle($documentoHandle);
             $Pedido->getDocumentoXml();
+        break;
+        case "getOcorrenciaTransporte":
+            $ocorrenciaHandle = $_POST['OCORRENCIA'];
+            
+            $Ocorrencia->setHandle($ocorrenciaHandle);
+            $Ocorrencia->getOcorrencia();
         break;
         default: 
             throw new Exception("Ação inválida",

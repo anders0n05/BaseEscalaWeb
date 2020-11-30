@@ -62,6 +62,12 @@
         $viagem->baixarItens($dados);
     }
 
+    else if ($acao == "baixarItensLocal"){
+        $dados = $_POST["DADOS"];        
+
+        $viagem->baixarItensLocal($dados);
+    }
+
     else if ($acao == "getOcorrenciaMotivo"){
         
         $viagem->getListaMotivoOcorrencia();
@@ -72,6 +78,14 @@
 
         $viagem->getListaMotivoGenericoOcorrencia();
         
+    }
+
+    else if ($acao == "getPDFMDFe") {
+        $viagem->getPDFMDFe();
+    }
+
+    else if ($acao == "getDocumentoPdf") {
+        $viagem->getDocumentoPdf();
     }
 
     else{

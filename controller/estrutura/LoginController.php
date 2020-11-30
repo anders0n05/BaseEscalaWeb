@@ -76,9 +76,10 @@ if (isset($entrar)) {
     $ValorFilial = $rowFilial['VALOR'];
     
     $QueryEmpresaPermissao = $connect->prepare("SELECT A.HANDLE, 
-											   (SELECT COUNT(B.HANDLE) FROM MS_FILIAL B WHERE B.EMPRESA = A.HANDLE) TEMFILIAL 
+											   (SELECT COUNT(B.HANDLE) FROM MS_FILIAL B WHERE B.EMPRESA = A.HANDLE AND B.STATUS <> 6) TEMFILIAL 
 													   FROM MS_EMPRESA A 
-									           WHERE (EXISTS(SELECT C.HANDLE FROM MS_USUARIOEMPRESA C WHERE C.EMPRESA = A.HANDLE AND C.USUARIO = ('" . $handleUsuario . "'))
+									           WHERE A.STATUS <> 6 
+                                                    AND (EXISTS(SELECT C.HANDLE FROM MS_USUARIOEMPRESA C WHERE C.EMPRESA = A.HANDLE AND C.USUARIO = ('" . $handleUsuario . "'))
 									           OR NOT EXISTS(SELECT D.HANDLE FROM MS_USUARIOEMPRESA D WHERE D.USUARIO = ('" . $handleUsuario . "')))
 											  ");
     $QueryEmpresaPermissao->execute();

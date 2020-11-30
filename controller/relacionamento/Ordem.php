@@ -4,8 +4,6 @@
     
     include_once('../../model/relacionamento/ModelOrdem.php');
 
-    date_default_timezone_set('America/Sao_Paulo');
-
     //var_dump($_POST);
     $acao = $_POST['ACAO'];
     
